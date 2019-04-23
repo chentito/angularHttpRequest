@@ -1,8 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngFor="let user of usersS" style="text-align:center">
-  <h2>{{user.name}} - {{user.id}}</h2>
-  <p>{{user.email}}</p>
-</div>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+<div class="container">
+  <div class="row">
+      
+          <div *ngFor="let post of postsS" class="col-sm-3">
+            <div class="card card-sm">
+                <div class="card-header">{{post.title}}</div>
+                <div class="card-body">{{post.body}}</div>
+            </div>
+          </div>          
+      
+  </div>
+</div>
 
 <router-outlet></router-outlet>
