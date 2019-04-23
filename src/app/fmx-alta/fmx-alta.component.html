@@ -1,0 +1,13 @@
+
+  <form [formGroup]="usrform" (ngSubmit)="guardar()">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" formControlName="name" />
+    <br>
+    <label for="username">Usuario:</label>
+    <input type="text" id="username" formControlName="username" />
+    <br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" formControlName="email" />
+    <br>
+    <button type="submit">Guardar</button>
+  </form>

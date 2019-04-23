@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user.model';
 import { Posts } from './models/posts.model';
+import { Album } from './models/album.model';
+import { usrFMX } from './models/usrFMX.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   apiURL = 'https://jsonplaceholder.typicode.com';
+  apiFMX = 'http://192.168.30.104/api';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
 
   constructor(private _http: HttpClient) { }
 
@@ -17,6 +28,14 @@ export class DataService {
 
   getPosts() {
     return this._http.get<Posts[]>( this.apiURL + '/posts' );
+  }
+
+  getAlbums() {
+    return this._http.get<Album[]>( this.apiURL + '/albums' );
+  }
+
+  updateFMXUsr( datos:usrFMX ) {
+    return this._http.post<usrFMX>( this.apiFMX + '/users' , datos , this.httpOptions );
   }
 
 }
