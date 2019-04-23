@@ -1,17 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container">
-  <div class="row">
-      
-          <div *ngFor="let post of postsS" class="col-sm-3">
-            <div class="card card-sm">
-                <div class="card-header">{{post.title}}</div>
-                <div class="card-body">{{post.body}}</div>
-            </div>
-          </div>          
-      
-  </div>
-</div>
+<nav>
+    <a routerLink="/usuarios" routerLinkActive="active">Usuarios</a><br>
+    <a routerLink="/posts" routerLinkActive="active">Posts</a>
+  </nav>
 
 <router-outlet></router-outlet>
