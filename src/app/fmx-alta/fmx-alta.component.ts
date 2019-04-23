@@ -21,14 +21,13 @@ export class FmxAltaComponent implements OnInit {
   constructor( private dataService:DataService) {}
 
   ngOnInit() {
-    
   }
 
   guardar() {
-    this.dataService.updateFMXUsr(this.usrform.value)
+    this.dataService.updateFMXUsr( this.usrform.value )
     .subscribe( datos => this.datosForm = datos);
 
-    //console.warn();
+    console.log(this.usrform.value);
   }
 
 }

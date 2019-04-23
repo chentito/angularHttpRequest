@@ -14,9 +14,11 @@ export class DataService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin':'*',
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      //'Content-Type':  'application/json',
+      //'Content-Type': 'application/x-www-form-urlencoded;',
+      'Content-Type' : 'text/plain',
+      'Access-Control-Allow-Origin': '*'
     })
   };
 
@@ -35,7 +37,7 @@ export class DataService {
   }
 
   updateFMXUsr( datos:usrFMX ) {
-    return this._http.post<usrFMX>( this.apiFMX + '/users' , datos , this.httpOptions );
+    return this._http.post<usrFMX>( this.apiFMX + '/users' , datos );
   }
 
 }
