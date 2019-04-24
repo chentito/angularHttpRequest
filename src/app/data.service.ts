@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { User } from './models/user.model';
 import { Posts } from './models/posts.model';
 import { Album } from './models/album.model';
 import { usrFMX } from './models/usrFMX.model';
-import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +23,7 @@ export class DataService {
   apiURL = 'https://jsonplaceholder.typicode.com';
   apiFMX = 'http://192.168.30.104/api';
 
-  private headers = new HttpHeaders({ 'Content-Type':  'application/json' });
+  private headers = new HttpHeaders({ 'Content-Type':  'text/plain' });
 
   constructor(private _http: HttpClient) { }
 
@@ -43,11 +45,20 @@ export class DataService {
   }
 
   getFMXUsr() {
-    return this._http.get<usrFMX[]>( this.apiFMX + '/users' );
+    return this._http.get<usrFMX[]> ( this.apiFMX + '/users' );
   }
 
   delFMXUsr( id:number ): Observable<{}> {
-    return this._http.delete( this.apiFMX + '/users/' + id , httpOptions );
+    //const url = `${this.apiFMX}/users/${id}`;
+    const url2 = this.apiFMX + '/users/' + id;
+    return this._http.delete<{}> ( url2 )
+      .pipe( catchError( err => {
+        throw 'Error al eliminar: ' + JSON.stringify( err );
+      }));
+  }
+
+  elimina( id:number ) {
+    return this._http.delete( this.apiFMX + '/users/' + id );
   }
 
 }

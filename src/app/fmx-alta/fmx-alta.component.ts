@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { DataService } from '../data.service';
 import { usrFMX } from '../models/usrFMX.model';
 
@@ -18,17 +20,19 @@ export class FmxAltaComponent implements OnInit {
     email   : new FormControl()
   });
 
-  constructor( private dataService:DataService) {}
+  constructor( private dataService:DataService , private ruta:Router ) {}
 
   ngOnInit() {
   }
 
   guardar() {
     this.dataService.updateFMXUsr( this.usrform.value )
-    .subscribe( 
+    .subscribe(
       datos => console.log( datos ),
-      er => console.log( er ) 
+      er => console.log( er )
     );
+
+    this.ruta.navigateByUrl( '/fmx-listado' );
   }
 
 }

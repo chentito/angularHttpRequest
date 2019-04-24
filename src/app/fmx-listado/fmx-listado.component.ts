@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { usrFMX } from '../models/usrFMX.model';
 import { DataService } from '../data.service';
 
@@ -10,18 +12,20 @@ import { DataService } from '../data.service';
 export class FmxListadoComponent implements OnInit {
   usrs: usrFMX[];
 
-  constructor( private dataService: DataService ) { }
+  constructor( private dataService: DataService, private ruta: Router ) { }
 
   ngOnInit() {
     return this.dataService.getFMXUsr()
-          .subscribe( data => this.usrs = data );
+      .subscribe( data => this.usrs = data );
   }
 
   eliminaElemento( id:number ) {
-    return this.dataService.delFMXUsr( id ).subscribe(
-      d => console.log( "Resp " + d ),
-      err => console.log( "Err " + JSON.stringify(err) )
-    );
+    this.dataService.elimina( id ).subscribe();
+    this.ruta.navigateByUrl( '/fmx-listado' );
+    /*return this.dataService.delFMXUsr( id ).subscribe (
+      () => this.ruta.navigateByUrl( '/fmx-listado' ),
+      (err) => console.log( "errores " + JSON.stringify( err ) )
+    );*/
   }
 
 }
