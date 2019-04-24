@@ -25,9 +25,10 @@ export class FmxAltaComponent implements OnInit {
 
   guardar() {
     this.dataService.updateFMXUsr( this.usrform.value )
-    .subscribe( datos => this.datosForm = datos);
-
-    console.log(this.usrform.value);
+    .subscribe( 
+      datos => console.log( datos ),
+      er => console.log( er ) 
+    );
   }
 
 }

@@ -1,0 +1,17 @@
+
+<table width="100%" class="table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Usuario</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let usr of usrs">
+    <td>{{usr.id}}</td>
+    <td>{{usr.name}}</td>
+    <td>{{usr.username}}</td>
+    <td>{{usr.email}}</td>
+    <td><button (click)="eliminaElemento(usr.id)">Elimina</button></td>
+  </tr>
+</table>

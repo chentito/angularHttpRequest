@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { FmxAltaComponent } from './fmx-alta/fmx-alta.component';
+import { FmxListadoComponent } from './fmx-listado/fmx-listado.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FmxAltaComponent } from './fmx-alta/fmx-alta.component';
     UsersComponent,
     PostsComponent,
     AlbumsComponent,
-    FmxAltaComponent
+    FmxAltaComponent,
+    FmxListadoComponent
   ],
   imports: [
     BrowserModule,

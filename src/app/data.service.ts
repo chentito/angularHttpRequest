@@ -4,23 +4,24 @@ import { User } from './models/user.model';
 import { Posts } from './models/posts.model';
 import { Album } from './models/album.model';
 import { usrFMX } from './models/usrFMX.model';
+import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
   apiURL = 'https://jsonplaceholder.typicode.com';
   apiFMX = 'http://192.168.30.104/api';
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-      //'Content-Type':  'application/json',
-      //'Content-Type': 'application/x-www-form-urlencoded;',
-      'Content-Type' : 'text/plain',
-      'Access-Control-Allow-Origin': '*'
-    })
-  };
+  private headers = new HttpHeaders({ 'Content-Type':  'application/json' });
 
   constructor(private _http: HttpClient) { }
 
@@ -37,7 +38,16 @@ export class DataService {
   }
 
   updateFMXUsr( datos:usrFMX ) {
-    return this._http.post<usrFMX>( this.apiFMX + '/users' , datos );
+    let datosJSON = JSON.stringify( datos );
+    return this._http.post( this.apiFMX + '/users' , datosJSON );
+  }
+
+  getFMXUsr() {
+    return this._http.get<usrFMX[]>( this.apiFMX + '/users' );
+  }
+
+  delFMXUsr( id:number ): Observable<{}> {
+    return this._http.delete( this.apiFMX + '/users/' + id , httpOptions );
   }
 
 }
