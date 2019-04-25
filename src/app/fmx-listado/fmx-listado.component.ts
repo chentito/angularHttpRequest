@@ -25,7 +25,10 @@ export class FmxListadoComponent implements OnInit {
     /*return this.dataService.delFMXUsr( id ).subscribe (
       () => this.ruta.navigateByUrl( '/fmx-listado' ),
       (err) => console.log( "errores " + JSON.stringify( err ) )
-    );*/
+    );
+    return this.dataService.delFMXUsr( id );
+    return this.dataService.elimina( id );
+    return this.dataService.eliminaFMXUsr( id ).subscribe();*/
   }
 
 }

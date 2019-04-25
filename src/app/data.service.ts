@@ -18,12 +18,11 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
 export class DataService {
   apiURL = 'https://jsonplaceholder.typicode.com';
   apiFMX = 'http://192.168.30.104/api';
 
-  private headers = new HttpHeaders({ 'Content-Type':  'text/plain' });
+  private headers = new HttpHeaders({ 'Content-Type':  'application/json' });
 
   constructor(private _http: HttpClient) { }
 
@@ -49,16 +48,19 @@ export class DataService {
   }
 
   delFMXUsr( id:number ): Observable<{}> {
-    //const url = `${this.apiFMX}/users/${id}`;
     const url2 = this.apiFMX + '/users/' + id;
-    return this._http.delete<{}> ( url2 )
+    return this._http.delete<{}> ( url2 , {headers: this.headers} )
       .pipe( catchError( err => {
         throw 'Error al eliminar: ' + JSON.stringify( err );
       }));
   }
 
   elimina( id:number ) {
-    return this._http.delete( this.apiFMX + '/users/' + id );
+    return this._http.delete<usrFMX>( `${this.apiFMX}`+'/users/'+ id );
+  }
+
+  eliminaFMXUsr( id:number ) {
+    return this._http.delete( this.apiFMX + '/users/' + id , { headers:this.headers } );
   }
 
 }
