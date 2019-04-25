@@ -63,4 +63,8 @@ export class DataService {
     return this._http.delete( this.apiFMX + '/users/' + id , { headers:this.headers } );
   }
 
+  options( id:number ) {
+    return this._http.options( this.apiFMX + '/users' ).subscribe();
+  }
+
 }
