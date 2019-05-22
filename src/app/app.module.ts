@@ -11,6 +11,7 @@ import { PostsComponent } from './posts/posts.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { FmxAltaComponent } from './fmx-alta/fmx-alta.component';
 import { FmxListadoComponent } from './fmx-listado/fmx-listado.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FmxListadoComponent } from './fmx-listado/fmx-listado.component';
     PostsComponent,
     AlbumsComponent,
     FmxAltaComponent,
-    FmxListadoComponent
+    FmxListadoComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

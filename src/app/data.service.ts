@@ -21,10 +21,8 @@ const httpOptions = {
 export class DataService {
   apiURL     = 'https://jsonplaceholder.typicode.com';
   apiFMX     = 'http://192.168.30.104/api';
-  apiFMXAuth = 'http://192.168.30.104/api/auth';
 
   private headers = new HttpHeaders({ 'Content-Type':  'application/json' });
-  private headersGetApi = new HttpHeaders({ 'Accept':  'application/json' , 'X-Requested-With' : 'XMLHttpRequest' });
 
   constructor(private _http: HttpClient) { }
 
@@ -67,10 +65,6 @@ export class DataService {
 
   options( id:number ) {
     return this._http.options( this.apiFMX + '/users' ).subscribe();
-  }
-
-  getApiToken() {
-    
   }
 
 }
