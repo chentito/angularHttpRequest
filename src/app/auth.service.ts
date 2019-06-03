@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import { Token } from './models/token.model';
 //import { UserAPI } from './models/userAPI.model';
@@ -12,23 +12,25 @@ let httpHeaders = new HttpHeaders({
 
 @Injectable({
     providedIn: 'root'
-})
+}) 
 export class AuthService {
 
-    apiAuth = 'http://192.168.30.104/api/auth';
+    apiAuth = 'http://192.168.30.110/api/auth';
 
     constructor( private _http: HttpClient ) {}
 
-    getApiToken(): Observable<Token> {
+    getApiToken(): Observable<any> {
         let datos = JSON.stringify( { 'email': 'guish@reyesalazar.com', 'password': '774411' } );
 
-        const params = new FormData();
-        params.append('email', 'guish@reyesalazar.com');
-        params.append('password', '774411');
+        let httpParams = new HttpParams()
+            .append( "email"    , 'guish@reyesalazar.com' )
+            .append( "password" , '774411' );
 
-        return this._http.post<Token> (
+        return this._http.post<any> (
             this.apiAuth + '/getToken' , 
-                    { email: '' , password: '' } ,
+                    //{ email: '' , password: '' } ,
+                    //JSON.stringify( params ) ,
+                    JSON.stringify( httpParams ) ,
                     { headers: httpHeaders, responseType: 'json' }
         );
 

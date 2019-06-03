@@ -20,7 +20,7 @@ const httpOptions = {
 })
 export class DataService {
   apiURL     = 'https://jsonplaceholder.typicode.com';
-  apiFMX     = 'http://192.168.30.104/api';
+  apiFMX     = 'http://192.168.30.110/api';
 
   private headers = new HttpHeaders({ 'Content-Type':  'application/json' });
 
